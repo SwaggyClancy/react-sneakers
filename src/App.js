@@ -34,23 +34,31 @@ function App() {
       </header>
 
       <main className="content p-40">
-        <h1 className="mb-40 ">Все кроссовки</h1>
-        <div className="card">
-          <img
-            height={220}
-            width={210}
-            src="/sneakers/Nike_Air_Force_1.png"
-            alt="Adidas Forum 2000"
-          />
-          <h5>Adidas Forum 2000</h5>
-          <div className="d-flex justify-between align-center">
-            <div className="d-flex flex-column">
-              <span>Цена: </span>
-              <p>12 999 руб.</p>
+        <div className="mb-40 d-flex justify-between align-center">
+          <h1>Все кроссовки</h1>
+          <div className="search-box d-flex">
+            <input type="text" placeholder="Поиск..." />
+            <img width={30} height={30} src="img/search.svg" alt="search" />
+          </div>
+        </div>
+        <div className="sneakers">
+          <div className="card">
+            <img
+              height={220}
+              width={210}
+              src="img/sneakers/Adidas_Forum_2000.png"
+              alt="Adidas Forum 2000"
+            />
+            <h5>Adidas Forum 2000</h5>
+            <div className="d-flex justify-between align-center">
+              <div className="d-flex flex-column">
+                <span>Цена: </span>
+                <p>12 999 руб.</p>
+              </div>
+              <button className="button">
+                <img width={20} height={20} src="/img/plus.svg" alt="Plus" />
+              </button>
             </div>
-            <button className="button">
-              <img width={20} height={20} src="/img/plus.svg" alt="Plus" />
-            </button>
           </div>
         </div>
       </main>
