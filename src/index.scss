@@ -2,7 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e7f6ff;
+  background-color: hsl(203, 100%, 95%);
   font-family: "Montserrat", "Funnel Sans", "Roboto", -apple-system,
     BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Apple Color Emoji",
     "Segoe UI Emoji", sans-serif;
@@ -10,6 +10,17 @@ body {
   h1 {
     font-weight: 500;
   }
+}
+
+/* ==========================================================================
+   UX FIX: Prevent image selection & drag
+   ========================================================================== */
+img,
+svg {
+  user-select: none; /* Disable text/image selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 button,
@@ -20,8 +31,8 @@ input {
 }
 
 .wrapper {
-  background: hsl(0, 0%, 100%); // #ffffff → чистый белый
-  box-shadow: 0px 10px 20px hsla(0, 0%, 0%, 0.04); // rgba(0,0,0,0.04)
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0px 10px 20px hsla(0, 0%, 0%, 0.04);
   border-radius: 20px;
   max-width: 1080px;
   margin: 5vh auto;
@@ -50,28 +61,117 @@ header {
 }
 
 .button {
-  background-color: hsla(0, 0%, 0%, 0.02);
-  border: 1px solid hsla(0, 0%, 0%, 0.03);
-  box-sizing: border-box;
-  border-radius: 8px;
-  height: 40px;
+  background-color: hsla(0, 0%, 0%, 0.02); /* Subtle neutral background */
+  border: 1px solid hsla(0, 0%, 0%, 0.03); /* Barely visible border */
+  border-radius: 8px; /* Soft rounded corners */
+  height: 40px; /* Fixed square size */
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.25s ease; /* Smooth state transitions */
+  overflow: hidden; /* Contain inner animations */
+
+  /* Hover effect — only on devices that support hover (mouse/trackpad) */
+  @media (hover: hover) {
+    &:hover {
+      background-color: hsla(0, 0%, 0%, 0.08); /* Slightly darker on hover */
+      transform: scale(1.08); /* Subtle grow animation */
+      box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1); /* Lift shadow */
+    }
+  }
+
+  /* State: Item added to cart — green background */
+  &.added {
+    background-color: hsl(131, 50%, 50%); /* Success green */
+    border-color: hsl(131, 50%, 50%);
+    transform: scale(1); /* Reset hover scale if active */
+
+    img {
+      filter: brightness(0) invert(1); /* White checkmark icon */
+    }
+
+    /* Hover when already added — lighter green */
+    @media (hover: hover) {
+      &:hover {
+        background-color: hsl(132, 58%, 57%); /* Brighter green on hover */
+        transform: scale(1.08);
+        box-shadow: 0 4px 12px hsla(131, 50%, 50%, 0.3); /* Enhanced shadow */
+      }
+    }
+  }
 }
 
 .search-box {
-  border: 1px solid hsla(0, 0%, 0%, 0.06);
-  border-radius: 8px;
-  img {
-    cursor: pointer;
+  position: relative; /* For icon positioning */
+  display: flex;
+  align-items: center;
+  border: 1.5px solid hsla(0, 0%, 0%, 0.08); /* Soft border */
+  border-radius: 12px; /* Rounded input */
+  background: hsl(0, 0%, 100%);
+  transition: all 0.3s ease; /* Smooth focus/hover */
+  overflow: hidden;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.05); /* Resting shadow */
+
+  /* Hover — only on hover-capable devices and when not focused */
+  @media (hover: hover) {
+    &:hover:not(:focus-within) {
+      border-color: hsla(0, 0%, 0%, 0.15); /* Darker border */
+      box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.1); /* Lift effect */
+    }
   }
-  input {
+
+  /* Focus state — active when input is clicked/focused */
+  &:focus-within {
+    border-color: hsl(203, 100%, 90%); /* Soft blue border */
+    box-shadow: 0 0 0 3px hsl(203, 100%, 95%); /* Subtle glow */
+    transform: translateY(-1px); /* Lift animation for depth */
+
+    .search-icon {
+      /* Turn search icon green on focus */
+      filter: brightness(0) saturate(100%) invert(35%) sepia(95%)
+        saturate(2500%) hue-rotate(190deg) brightness(85%) contrast(120%);
+    }
+  }
+
+  /* Search icon (magnifying glass) */
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    pointer-events: none; /* Allow clicks to pass through */
+    transition: all 0.3s ease;
+    opacity: 0.6;
+  }
+
+  /* Input field */
+  .search-input {
     border: 0;
-    font-size: 16px;
-    padding: 8px;
-    min-width: 200px;
+    outline: 0;
+    font-size: 15px;
+    padding: 12px 14px 12px 44px; /* Space for icon */
+    width: 100%;
+    min-width: 220px;
+    background: transparent;
+    color: hsl(0, 0%, 0%);
+
+    &::placeholder {
+      color: hsla(0, 0%, 0%, 0.4); /* Muted placeholder */
+      transition: color 0.2s ease;
+    }
+
+    &:focus::placeholder {
+      color: hsla(0, 0%, 0%, 0.25); /* Fade on focus */
+    }
+  }
+
+  /* Touch feedback — only on touch devices (no hover) */
+  @media (hover: none) {
+    &:active {
+      transform: scale(0.98) translateY(-1px); /* Press + lift */
+      transition: transform 0.1s ease;
+    }
   }
 }

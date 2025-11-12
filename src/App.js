@@ -1,4 +1,11 @@
+import { useState } from "react";
 function App() {
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleClick = () => {
+    setIsAdded(!isAdded);
+  };
+
   return (
     <div className="wrapper">
       <header className="d-flex justify-between align-center p-40">
@@ -36,9 +43,19 @@ function App() {
       <main className="content p-40">
         <div className="mb-40 d-flex justify-between align-center">
           <h1>Все кроссовки</h1>
-          <div className="search-box d-flex">
-            <input type="text" placeholder="Поиск..." />
-            <img width={30} height={30} src="img/search.svg" alt="search" />
+          <div className="search-box">
+            <img
+              width={18}
+              height={18}
+              src="/img/search.svg"
+              alt="search"
+              className="search-icon"
+            />
+            <input
+              type="text"
+              placeholder="Поиск..."
+              className="search-input"
+            />
           </div>
         </div>
         <div className="sneakers">
@@ -46,7 +63,7 @@ function App() {
             <img
               height={220}
               width={210}
-              src="img/sneakers/Adidas_Forum_2000.png"
+              src="/img/sneakers/Adidas_Forum_2000.png"
               alt="Adidas Forum 2000"
             />
             <h5>Adidas Forum 2000</h5>
@@ -55,8 +72,16 @@ function App() {
                 <span>Цена: </span>
                 <p>12 999 руб.</p>
               </div>
-              <button className="button">
-                <img width={20} height={20} src="/img/plus.svg" alt="Plus" />
+              <button
+                className={`button ${isAdded ? "added" : ""}`}
+                onClick={handleClick}
+              >
+                <img
+                  width={20}
+                  height={20}
+                  src={isAdded ? "/img/check.svg" : "/img/plus.svg"}
+                  alt={isAdded ? "check" : "plus"}
+                />
               </button>
             </div>
           </div>
