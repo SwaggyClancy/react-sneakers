@@ -48,6 +48,7 @@ header {
   padding: 30px;
   border: 1px solid hsla(0, 0%, 0%, 0.05);
   border-radius: 30px;
+  transition: all 0.3s ease-in-out;
   h5 {
     font-weight: 400;
     font-size: 18px;
@@ -57,6 +58,14 @@ header {
   }
   p {
     font-weight: 600;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-5px); /* Subtle grow animation */
+      box-shadow: 0 20px 35px hsla(0, 0%, 0%, 0.3); /* Lift shadow */
+      border: 1.5px solid hsla(0, 0%, 0%, 0.07);
+    }
   }
 }
 
@@ -73,7 +82,7 @@ header {
   transition: all 0.25s ease; /* Smooth state transitions */
   overflow: hidden; /* Contain inner animations */
 
-  /* Hover effect — only on devices that support hover (mouse/trackpad) */
+  /* Hover effect — only on devices that support hover */
   @media (hover: hover) {
     &:hover {
       background-color: hsla(0, 0%, 0%, 0.08); /* Slightly darker on hover */
@@ -262,5 +271,29 @@ header {
         box-shadow: 0 10px 24px hsla(346, 80%, 55%, 0.28); // Deeper, richer shadow
       }
     }
+  }
+}
+
+.drawer-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 0%, 0.5);
+
+  .drawer {
+    position: fixed;
+    width: 35%;
+    height: 100%;
+    right: 0;
+    background: hsl(0, 0%, 100%);
+    box-shadow: -10px 4px 24px hsla(0, 0, 0, 0.1);
+    padding: 30px;
+  }
+
+  h2 {
+    margin: 0;
   }
 }

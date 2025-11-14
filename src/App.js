@@ -10,6 +10,50 @@ function App() {
 
   return (
     <div className="wrapper">
+      <div className="drawer-overlay">
+        <div className="drawer">
+          <h2>Корзина</h2>
+          <div className="cartItem d-flex justify-around">
+            <img
+              height={110}
+              width={105}
+              src="/img/sneakers/Adidas_Forum_2000.png"
+              alt="Adidas Forum 2000"
+            />
+            <div className="d-flex flex-column justify-center">
+              <p>Adidas Forum 2000</p>
+              <b>12 999 руб.</b>
+            </div>
+            <button className="d-flex justify-center align-center p-5">
+              <svg
+                width={20}
+                height={20}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path
+                    d="M19 5L5 19M5 5L9.5 9.5M12 12L19 19"
+                    stroke="#000000"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{" "}
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <header className="d-flex justify-between align-center p-40">
         <div className="d-flex align-center">
           {/* Header left part */}
@@ -66,7 +110,7 @@ function App() {
               className={`like-btn ${isLiked ? "liked" : ""}`}
               onClick={() => setIsLiked(!isLiked)}
             >
-              {/* Unliked heart */}
+              {/* Un-liked heart */}
               <svg className={"heart-outline"} viewBox="0 0 24 24" fill="none">
                 <path
                   d="M12 5.5C16.5 1 22 4.3 22 9.1c0 5-6 7.6-10 9.4C8 16.7 2 14.1 2 9.1 2 4.3 7.5 1 12 5.5Z"
