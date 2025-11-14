@@ -60,7 +60,7 @@ header {
   }
 }
 
-.button {
+.add-btn {
   background-color: hsla(0, 0%, 0%, 0.02); /* Subtle neutral background */
   border: 1px solid hsla(0, 0%, 0%, 0.03); /* Barely visible border */
   border-radius: 8px; /* Soft rounded corners */
@@ -172,6 +172,95 @@ header {
     &:active {
       transform: scale(0.98) translateY(-1px); /* Press + lift */
       transition: transform 0.1s ease;
+    }
+  }
+}
+
+.like-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: hsl(0, 0%, 100%); // Clean white base
+  border: 1.5px solid hsla(0, 0%, 0%, 0.08); // Very subtle neutral border
+  border-radius: 12px; // Soft rounded corners
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1); // Smooth, natural easing
+
+  // Mobile tap feedback (no hover support)
+  @media (hover: none) {
+    &:active {
+      transform: scale(0.96); // Slight press-in effect
+      box-shadow: 0 2px 6px hsla(0, 0%, 0, 0.12); // Gentle inner shadow
+    }
+  }
+
+  // Both SVG icons are absolutely centered
+  svg {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); // Fluid morphing
+  }
+
+  // Outline heart (default state) — thin and elegant
+  .heart-outline {
+    color: hsl(0, 0%, 55%); // Neutral mid-gray
+    stroke: currentColor;
+    stroke-width: 1.2;
+    fill: none;
+  }
+
+  // Filled heart (active state) — vibrant but tasteful red
+  .heart-fill {
+    color: hsl(346, 88%, 58%); // Rich Instagram-like red
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3); // Starts tiny for smooth reveal
+  }
+
+  /* ============================= HOVER (when NOT liked) ============================= */
+  @media (hover: hover) {
+    &:not(.liked):hover {
+      background: hsla(346, 100%, 94%, 0.6); // Soft pinkish glow
+      border-color: hsla(346, 90%, 65%, 0.5); // Subtle red border tint
+      transform: translateY(-2px) scale(1.06); // Lift + slight grow
+      box-shadow: 0 8px 20px hsla(346, 80%, 55%, 0.18); // Elegant floating shadow
+
+      .heart-outline {
+        color: hsl(346, 85%, 58%); // Heart turns red on hover
+        stroke-width: 1.5; // Slightly thicker for emphasis
+      }
+    }
+  }
+
+  /* ============================= LIKED STATE ============================= */
+  &.liked {
+    background: hsla(346, 100%, 92%, 0.7); // Warm red-tinted background
+    border-color: hsl(346, 88%, 58%); // Solid red border
+    transform: translateY(-1px); // Slightly raised
+    box-shadow: 0 6px 16px hsla(346, 80%, 55%, 0.22); // Soft red-tinted shadow
+
+    .heart-outline {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.7); // Fade + shrink out
+    }
+
+    .heart-fill {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1); // Full reveal
+    }
+
+    // Hover when already liked — even more premium feel
+    @media (hover: hover) {
+      &:hover {
+        background: hsla(346, 100%, 88%, 0.85); // Slightly stronger tint
+        transform: translateY(-3px) scale(1.08); // Higher lift
+        box-shadow: 0 10px 24px hsla(346, 80%, 55%, 0.28); // Deeper, richer shadow
+      }
     }
   }
 }

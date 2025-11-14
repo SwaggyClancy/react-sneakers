@@ -6,6 +6,8 @@ function App() {
     setIsAdded(!isAdded);
   };
 
+  const [isLiked, setIsLiked] = useState(false);
+
   return (
     <div className="wrapper">
       <header className="d-flex justify-between align-center p-40">
@@ -60,6 +62,29 @@ function App() {
         </div>
         <div className="sneakers">
           <div className="card">
+            <button
+              className={`like-btn ${isLiked ? "liked" : ""}`}
+              onClick={() => setIsLiked(!isLiked)}
+            >
+              {/* Unliked heart */}
+              <svg className={"heart-outline"} viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 5.5C16.5 1 22 4.3 22 9.1c0 5-6 7.6-10 9.4C8 16.7 2 14.1 2 9.1 2 4.3 7.5 1 12 5.5Z"
+                  stroke="currentColor"
+                  strokeWidth="1.15"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              {/* Liked filled with color */}
+              <svg className={"heart-fill"} viewBox="0 0 24 24">
+                <path
+                  d="M12 5.5C16.5 1 22 4.3 22 9.1c0 5-6 7.6-10 9.4C8 16.7 2 14.1 2 9.1 2 4.3 7.5 1 12 5.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
             <img
               height={220}
               width={210}
@@ -73,7 +98,7 @@ function App() {
                 <p>12 999 руб.</p>
               </div>
               <button
-                className={`button ${isAdded ? "added" : ""}`}
+                className={`add-btn ${isAdded ? "added" : ""}`}
                 onClick={handleClick}
               >
                 <img
