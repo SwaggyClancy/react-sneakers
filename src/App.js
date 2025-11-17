@@ -12,44 +12,33 @@ function App() {
     <div className="wrapper">
       <div className="drawer-overlay">
         <div className="drawer">
-          <h2>Корзина</h2>
-          <div className="cartItem d-flex justify-around">
+          <h2 className="mb-20">Корзина</h2>
+          <div className="cart-item d-flex align-center">
             <img
-              height={110}
-              width={105}
+              className="mr-20"
+              height={100}
+              width={100}
               src="/img/sneakers/Adidas_Forum_2000.png"
-              alt="Adidas Forum 2000"
+              alt="Sneakers"
             />
-            <div className="d-flex flex-column justify-center">
-              <p>Adidas Forum 2000</p>
+
+            <div className="cart-item-info mr-20">
+              <p className="mb-5">Adidas Forum 2000</p>
               <b>12 999 руб.</b>
             </div>
-            <button className="d-flex justify-center align-center p-5">
-              <svg
-                width={20}
-                height={20}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
+
+            <div className="cart-item-remove">
+              <button className="remove-btn">
+                <svg width={20} height={20} viewBox="0 0 24 24" fill="none">
                   <path
-                    d="M19 5L5 19M5 5L9.5 9.5M12 12L19 19"
-                    stroke="#000000"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>{" "}
-                </g>
-              </svg>
-            </button>
+                    d="M19 5L5 19M5 5L19 19"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
