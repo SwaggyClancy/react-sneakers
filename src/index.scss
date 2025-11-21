@@ -30,6 +30,13 @@ svg {
   -ms-user-select: none;
 }
 
+@media (hover: none) {
+  // To deal with blue background, when profile and cart icons are clicked on touchscreens
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 button,
 input {
   font-family: "Montserrat", "Funnel Sans", "Roboto", -apple-system,
@@ -47,6 +54,36 @@ input {
 
 header {
   border-bottom: 1px solid hsl(0, 0%, 88%);
+
+  .header-icon {
+    cursor: pointer;
+    transition: all 0.35s ease;
+    color: hsl(0, 0%, 40%);
+
+    @media (hover: hover) {
+      &:hover {
+        color: hsl(203, 80%, 55%);
+        transform: translateY(-3px) scale(1.15);
+      }
+    }
+
+    &:active {
+      transform: translateY(0) scale(1.05);
+      color: hsl(203, 80%, 55%);
+    }
+  }
+
+  @media (hover: hover) {
+    .cart-icon:hover {
+      transform: translateY(-3px) scale(1.15) rotate(8deg);
+    }
+  }
+
+  .cart-icon:active {
+    transform: translateY(0) scale(1.05);
+    color: hsl(203, 80%, 55%);
+    background-color: transparent;
+  }
 }
 
 .card {
